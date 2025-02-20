@@ -1,4 +1,4 @@
-/* 
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 * {
@@ -17,119 +17,22 @@ body {
   padding: 20px;
 }
 
+
 .response-details-container {
-  width: 90%;
-  max-width: 600px;
-  background: white;
+  width: 600px;
+  height : 580px;
+  max-width: 1000px; 
+  background: linear-gradient(135deg, #e0e7ef, #f8f9fa);
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   text-align: center;
 }
 
-h1 {
-  font-size: 22px;
-  font-weight: 600;
-  color: #091133;
-  margin-bottom: 20px;
-}
-
-.response-card-container {
-  max-height: 400px;
+.responses-scrollable-container {
+  max-height: 380px; 
   overflow-y: auto;
-  padding-right: 5px;
-}
-
-.response-card {
-  background: #f8f9fa;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
-  text-align: left;
-}
-
-.response-card h3 {
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.response-card p {
-  font-size: 14px;
-  color: #555;
-}
-
-.button-container {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn.accept {
-  background-color: #28a745;
-}
-
-.btn.accept:hover {
-  background-color: #218838;
-}
-
-.btn.reject {
-  background-color: #dc3545;
-}
-
-.btn.reject:hover {
-  background-color: #c82333;
-} */
-
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #e0e7ef, #f8f9fa);
-  min-height: 100vh;
-  padding: 20px;
-}
-
-/* 
-  1) Increased max-width to 800px (feel free to adjust).
-  2) Set max-height to 500px (feel free to adjust).
-  3) overflow-y: auto to enable scrolling if content exceeds max-height.
-*/
-.response-details-container {
-  /* width: 100%; */
-  width:600px;
-  max-width: 1000px; /* Increased container width */
-  max-height: 500px; /* Decreased container height */
-  overflow-y: auto;  /* Make it scrollable if content is longer than 500px */
-  /* background: white; */
-  background: linear-gradient(135deg, #e0e7ef, #f8f9fa);
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  text-align: center;
+  margin-bottom: 20px;
 }
 
 h1 {
@@ -167,12 +70,10 @@ h1 {
   margin-top: 20px;
 }
 
-/* Status message default styling */
 .status-message {
   margin: 15px 0;
 }
 
-/* Dynamic status classes */
 .status-message.accepted {
   color: green;
 }
@@ -184,7 +85,7 @@ h1 {
 .btn {
   padding: 10px 20px;
   font-size: 16px;
-  color: #fff;
+  color: #fff; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -193,6 +94,7 @@ h1 {
 
 .btn.accept {
   background-color: #28a745;
+  color: #e0e7ef !important; 
 }
 
 .btn.accept:hover {
@@ -206,3 +108,4 @@ h1 {
 .btn.reject:hover {
   background-color: #c82333;
 }
+

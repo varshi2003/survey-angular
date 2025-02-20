@@ -1,39 +1,3 @@
-<!-- <div class="response-details-container">
-  <h1>Survey Response Details</h1>
-
-  <div *ngIf="loading">
-    <p>Loading responses...</p>
-  </div>
-
-  <div *ngIf="errorMessage">
-    <p class="error">{{ errorMessage }}</p>
-  </div>
-
-  <div *ngIf="surveyResponse">
-   
-
-    <div *ngFor="let response of surveyResponse.responses" class="response-card">
-      <h3>{{ response.question }}</h3>
-      <p><strong>Answer:</strong> {{ response.answer }}</p>
-      <p><strong>Required:</strong> {{ response.required ? 'Yes' : 'No' }}</p>
-    </div>
-
-    <div class="status-message">
-      <strong>{{ statusMessage }}</strong>
-    </div>
-
-    <div class="button-container">
-      <button (click)="acceptResponse()" class="btn accept">Accept</button>
-      <button (click)="rejectResponse()" class="btn reject">Reject</button>
-    </div>
-  </div>
-
-  <div *ngIf="!loading && !surveyResponse">
-    <p>No response found.</p>
-  </div>
-</div> -->
-
-
 <div class="response-details-container">
   <h1>Survey Response Details</h1>
 
@@ -46,14 +10,17 @@
   </div>
 
   <div *ngIf="surveyResponse">
-
-    <div *ngFor="let response of surveyResponse.responses" class="response-card">
-      <h3>{{ response.question }}</h3>
-      <p><strong>Answer:</strong> {{ response.answer }}</p>
-      <p><strong>Required:</strong> {{ response.required ? 'Yes' : 'No' }}</p>
+    <div class="responses-scrollable-container">
+      <div
+        *ngFor="let response of surveyResponse.responses"
+        class="response-card"
+      >
+        <h3>{{ response.question }}</h3>
+        <p><strong>Answer:</strong> {{ response.answer }}</p>
+        <p><strong>Required:</strong> {{ response.required ? "Yes" : "No" }}</p>
+      </div>
     </div>
 
-    <!-- Status message with dynamic class -->
     <div class="status-message" [ngClass]="statusClass">
       <strong>{{ statusMessage }}</strong>
     </div>
