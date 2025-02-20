@@ -1,8 +1,7 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 * {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 body {
   font-family: Arial, sans-serif;
@@ -14,17 +13,18 @@ body {
   align-items: center;
   height: 100vh;
   flex-direction: column;
-  background: linear-gradient(135deg, #e0e7ef, #f8f9fa);
+  background: linear-gradient(135deg, #e0e7ef, #f8f9fa) !important;
 }
 
 .response-details-container {
-    margin-top: 50px;
-    margin-left: 120px;
+  margin-top: 50px;
+  margin-left: 120px;
   text-align: center;
   width: 80%;
 }
 
 h1 {
+  margin-top: 0px;
   margin-bottom: 20px;
   color: #333;
 }
@@ -64,6 +64,7 @@ h1 {
 }
 
 .back-btn {
+  font-size: 16px;
   display: inline-block;
   margin-top: 30px;
   padding: 10px 20px;

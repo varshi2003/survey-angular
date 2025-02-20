@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewEncapsulation} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule,NgFor,NgIf } from '@angular/common';
@@ -14,7 +14,8 @@ interface SurveyResponse {
   selector: 'app-response-details',
   templateUrl: './response-details.component.html',
   styleUrls: ['./response-details.component.css'],
-  imports : [CommonModule,NgFor]
+  imports : [CommonModule,NgFor],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ResponseDetailsComponent implements OnInit {
   surveyId!: string | null;
@@ -58,7 +59,7 @@ export class ResponseDetailsComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/admin/survey-response-dashboard']);
+    this.router.navigate(['/admin/survey-response']);
   }
   navigateToResponses(responseId: string): void {
     this.router.navigate(['/admin/responses'], { queryParams: { id: responseId, surveyId: this.surveyId } });

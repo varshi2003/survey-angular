@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { SurveyService } from '../../services/survey-dashboard-api.service';
 import { Survey } from '../../models/survey-response-dashboard.model';
 import { CommonModule,NgFor } from '@angular/common';
@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
   selector: 'app-survey-response-dashboard',
   templateUrl: './survey-response-dashboard.component.html',
   styleUrls: ['./survey-response-dashboard.component.css'],
-  imports : [NgFor,CommonModule]
+  imports : [NgFor,CommonModule],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SurveyResponseDashboardComponent implements OnInit {
   surveys: Survey[] = [];

@@ -33,7 +33,7 @@ body {
 
 .container {
     margin-top: 50px;
-    margin-left: 180px;
+    
     height : auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
