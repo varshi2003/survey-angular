@@ -1,0 +1,49 @@
+<p>admin-view-surveys works!</p>
+<!-- src/app/admin/admin-view-surveys/admin-view-surveys.component.html -->
+<!-- 
+<div class="view-surveys-header">
+    <h1>Survey Forms</h1>
+  </div>
+  
+  <div id="survey-container" class="admin-survey-container">
+    <div *ngIf="surveys.length === 0">
+      <p>No surveys available.</p>
+    </div>
+  
+    <div *ngFor="let survey of surveys" class="card-admin-view-surveys" (click)="deleteSurvey(survey.id)">
+      <img *ngIf="survey.imageUrl" [src]="survey.imageUrl" [alt]="survey.name" class="survey-image" />
+      <h3 class="survey-title">{{ survey.name }}</h3>
+      <p class="survey-description">{{ survey.description }}</p>
+    </div>
+  </div>
+  
+  <div id="pagination" class="pagination-wrapper">
+    <button *ngIf="currentPage > 0" class="pagination-button-prev" (click)="changePage(currentPage - 1)">Prev</button>
+    <span class="page-info">Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+    <button *ngIf="currentPage < totalPages - 1" class="pagination-button" (click)="changePage(currentPage + 1)">Next</button>
+  </div> -->
+  <div class="view-surveys-header">
+    <h1>Survey Forms</h1>
+  </div>
+  
+  <div id="survey-container" class="admin-survey-container">
+    <div *ngIf="surveys.length === 0">
+      <p>No surveys available.</p>
+    </div>
+  
+    <div *ngFor="let survey of surveys" class="card-admin-view-surveys" (click)="showSurveyOptions(survey)">
+      <img *ngIf="survey.imageUrl" [src]="survey.imageUrl" [alt]="survey.name" class="survey-image" />
+      <h3 class="survey-title">{{ survey.name }}</h3>
+      <p class="survey-description">{{ survey.description }}</p>
+    </div>
+  </div>
+  
+  <div id="pagination" class="pagination-wrapper">
+    <button class="pagination-button" *ngIf="currentPage > 0" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 0">Prev</button>
+    <span class="page-info">Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+    <button class="pagination-button" *ngIf="currentPage < totalPages - 1" (click)="changePage(currentPage + 1)">Next</button>
+  </div>
+  
+  
+  
+  

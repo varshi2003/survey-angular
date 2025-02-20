@@ -1,0 +1,19 @@
+<p>user-view-surveys works!</p>
+<div class="view-surveys-header">
+    <h1>User Dashboard</h1>
+  </div>
+  
+  <div id="survey-container" class="admin-survey-container">
+    <div *ngFor="let survey of surveys" class="card-user-view-surveys" (click)="navigateToSurvey(survey.id)">
+      <img *ngIf="survey.imageUrl" [src]="survey.imageUrl" [alt]="survey.name" class="survey-image" />
+      <h3 class="survey-title">{{ survey.name }}</h3>
+      <p *ngIf="survey.description" class="survey-description">{{ survey.description }}</p>
+    </div>
+  </div>
+  
+  <div id="pagination" class="pagination">
+    <button *ngIf="currentPage > 0" (click)="changePage(-1)">Previous</button>
+    <span class="page-info">Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+    <button *ngIf="currentPage < totalPages - 1" (click)="changePage(1)">Next</button>
+  </div>
+  

@@ -1,0 +1,41 @@
+<p>admin-view-form works!</p>
+<!-- admin-view-form.component.html -->
+<div class="form-container">
+    <div class="header">
+      <h1 *ngIf="surveyData">{{ surveyData.name }}</h1>
+    </div>
+  
+    <form *ngIf="surveyData" class="container">
+      <div *ngFor="let question of surveyData.questions; let i = index" class="form-field">
+        <label>{{ i + 1 }}. {{ question.question }}</label>
+  
+        <textarea *ngIf="question.type === 'Paragraph'" [placeholder]="question.placeholder"></textarea>
+  
+        <div *ngIf="question.type === 'MultipleChoice'">
+          <label *ngFor="let option of question.additionalProperties.options">
+            <input type="checkbox" [value]="option" />
+            {{ option }}
+          </label>
+        </div>
+  
+        <div *ngIf="question.type === 'RadioButton'">
+          <label *ngFor="let option of question.additionalProperties.options">
+            <input type="radio" [value]="option" name="radio-{{ i }}" />
+            {{ option }}
+          </label>
+        </div>
+  
+        <select *ngIf="question.type === 'DropDown'">
+          <option value="">Select...</option>
+          <option *ngFor="let option of question.additionalProperties.options" [value]="option">
+            {{ option }}
+          </option>
+        </select>
+  
+        <input *ngIf="question.type === 'FileUpload'" type="file" />
+        <input *ngIf="question.type === 'DateAndTime'" type="datetime-local" />
+        <input *ngIf="question.type === 'Email'" type="email" [placeholder]="question.placeholder" />
+      </div>
+    </form>
+  </div>
+  

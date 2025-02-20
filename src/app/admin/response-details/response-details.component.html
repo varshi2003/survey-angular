@@ -1,0 +1,17 @@
+<h2>Survey Response Details</h2>
+<div class="response-details-container">
+    <h1>Survey Responses</h1>
+  
+    <div *ngIf="responses.length === 0" class="no-responses">
+      <p>No responses found for this survey.</p>
+    </div>
+  
+    <div *ngIf="responses.length > 0" class="response-details-card-container">
+      <div *ngFor="let response of responses" class="response-details-card" (click)="navigateToResponses(response.id)">
+        <h3>{{ response.name }}</h3>
+      </div>
+    </div>
+  
+    <button (click)="goBack()" class="back-btn">Back to Home</button>
+  </div>
+  
