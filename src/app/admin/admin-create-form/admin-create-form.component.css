@@ -1,50 +1,9 @@
-/* .survey-form {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  input, select, textarea {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-  }
-  
-  button {
-    padding: 8px 12px;
-    margin-top: 10px;
-    cursor: pointer;
-  }
-  
-  .questions {
-    margin-top: 30px;
-  }
-  
-  .question {
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .options {
-    margin-top: 15px;
-  }
-  
-  .option {
-    margin-bottom: 10px;
-  }
-   */
 
-   
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 * {
     font-family: 'Poppins', sans-serif;
 }
-
 
 body {
   overflow: auto;
@@ -55,9 +14,9 @@ body {
   height: auto;
 }
 
-#app {
+.app {
+  width:700px;
   height: auto;
-  max-width: 600px;
   margin: 40px auto;
   padding: 20px;
   background: white;
@@ -70,7 +29,11 @@ h1 {
   margin-bottom: 20px;
   color: #091133;
 }
-
+.form-field {
+  text-align: center; 
+  margin-bottom: 15px;
+}
+.form-field .label{}
 .survey-input {
   width: 100%;
   padding: 12px;
@@ -320,7 +283,7 @@ button.save-survey-btn:hover {
 
 #addQuestionBtn{
   width:60%;
-  margin-left:70px ;
+  margin-left:130px ;
 
 }
 
@@ -346,4 +309,27 @@ button.save-survey-btn:hover {
   background-color: #fff;
   font-size: 16px;
   cursor: pointer;
+}
+
+.required-label {
+  font-weight: bold;
+  display: block; 
+  margin-bottom: 5px;
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px; 
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 5px; 
+}
+
+.radio-option span {
+  display: inline-block;
+  transform: translateY(-2px); 
+  font-size: 14px; 
 }

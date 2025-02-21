@@ -1,15 +1,5 @@
-// import { Component } from '@angular/core';
 
-// @Component({
-//   selector: 'app-admin-view-form',
-//   imports: [],
-//   templateUrl: './admin-view-form.component.html',
-//   styleUrl: './admin-view-form.component.css'
-// })
-// export class AdminViewFormComponent {
-
-// }
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SurveyService } from '../../services/survey.service';
 import { CommonModule,NgFor,NgIf } from '@angular/common';
@@ -19,7 +9,8 @@ import Swal from 'sweetalert2';
   selector: 'app-admin-view-form',
   templateUrl: './admin-view-form.component.html',
   styleUrls: ['./admin-view-form.component.css'],
-  imports : [CommonModule,NgFor,NgIf]
+  imports : [CommonModule,NgFor,NgIf],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AdminViewFormComponent implements OnInit {
   surveyId: string | null = null;

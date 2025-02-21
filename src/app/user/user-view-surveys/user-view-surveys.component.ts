@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { SurveyService } from '../../services/survey.service';
 import Swal from 'sweetalert2';
@@ -9,7 +9,8 @@ import { CommonModule,NgFor,NgIf } from '@angular/common';
   selector: 'app-user-view-surveys',
   templateUrl: './user-view-surveys.component.html',
   styleUrls: ['./user-view-surveys.component.css'],
-  imports : [NgIf,NgFor,CommonModule]
+  imports : [NgIf,NgFor,CommonModule],
+  encapsulation: ViewEncapsulation.None,
 })
 export class UserViewSurveysComponent implements OnInit {
   surveys: any[] = [];

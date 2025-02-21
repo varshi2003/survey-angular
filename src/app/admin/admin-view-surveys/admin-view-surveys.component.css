@@ -33,7 +33,7 @@ body {
 
 .admin-survey-container {
   margin-top: 50px;
-  margin-left: 180px;
+  margin-left: 10px;
   height : auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -100,7 +100,7 @@ body {
 }
 
 .pagination {
- margin-left: 500px;
+ margin-left: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,8 +111,6 @@ body {
 }
 
 .page-info {
-
-
   font-size: 1rem;
   font-weight: 600;
   color: #444;
@@ -123,9 +121,8 @@ body {
   min-width: 100px;
 }
 .pagination-wrapper{
-  margin-left: 550px;
+  margin-left: 350px;
 }
-
 .pagination-button {
   padding: 10px 20px;
   border: none;
@@ -135,7 +132,6 @@ body {
   cursor: pointer;
   transition: background 0.3s ease;
 }
-
 .pagination-button-prev {
   padding: 10px 20px;
   border: none;
@@ -145,7 +141,6 @@ body {
   cursor: pointer;
   transition: background 0.3s ease;
 }
-
 .pagination-button:hover {
   background: #0c1549;
 }
@@ -177,6 +172,5 @@ body {
 
 .delete-icon{
   width: 50px;
-   cursor: pointer; 
-  
+   cursor: pointer;  
 }

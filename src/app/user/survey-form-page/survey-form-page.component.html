@@ -1,8 +1,90 @@
-<p>survey-form-page works!</p>
 
-<div class="survey-header">
+   <div class="survey-header">
     <h2>{{ surveyData.name }}</h2>
-    
   </div>
-  <form id="survey-form"></form>
+  <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()">
+    <div *ngFor="let question of surveyData.questions; let i = index" class="form-field">
+      <label>{{ i + 1 }}. {{ question.question }}</label>
+      <ng-container [ngSwitch]="question.type">
+        <ng-container *ngSwitchCase="'Paragraph'">
+          <textarea 
+            [formControlName]="'question-' + i" 
+            placeholder="{{ question.placeholder }}"
+            (keydown)="onParagraphKeydown($event, 'question-' + i)"
+            (paste)="onParagraphPaste($event, 'question-' + i)">
+          </textarea>
+        </ng-container>
+        <ng-container *ngSwitchCase="'MultipleChoice'">
+          <div class="option-container">
+            <label *ngFor="let option of question.additionalProperties?.options">
+              <input 
+                type="checkbox" 
+                [value]="option" 
+                (change)="onMultipleChoiceChange($event, 'question-' + i)" />
+              {{ option }}
+            </label>
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'RadioButton'">
+          <div class="option-container">
+            <label *ngFor="let option of question.additionalProperties?.options">
+              <input 
+                type="radio" 
+                [value]="option" 
+                [formControlName]="'question-' + i" 
+                name="question-{{i}}" />
+              {{ option }}
+            </label>
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'DropDown'">
+          <select [formControlName]="'question-' + i">
+            <option *ngFor="let option of question.additionalProperties?.options" [value]="option">
+              {{ option }}
+            </option>
+          </select>
+        </ng-container>
+        <ng-container *ngSwitchCase="'FileUpload'">
+          <input type="file" [formControlName]="'question-' + i" />
+        </ng-container>
+        <ng-container *ngSwitchCase="'DateAndTime'">
+          <input type="datetime-local" [formControlName]="'question-' + i" />
+        </ng-container>
+        <ng-container *ngSwitchCase="'Email'">
+          <input 
+            type="email" 
+            [formControlName]="'question-' + i" 
+            placeholder="{{ question.placeholder }}" />
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <input 
+            type="text" 
+            [formControlName]="'question-' + i" 
+            placeholder="{{ question.placeholder }}" />
+        </ng-container>
+      </ng-container>
+  
+      <div class="error-message" 
+           *ngIf="surveyForm.get('question-' + i)?.invalid && surveyForm.get('question-' + i)?.touched">
+        <ng-container *ngIf="surveyForm.get('question-' + i)?.errors?.['required']">
+          <ng-container *ngIf="question.type==='MultipleChoice' || question.type==='RadioButton' || question.type==='DropDown'; else genericReq">
+            At least one option is required.
+          </ng-container>
+          <ng-template #genericReq>
+            This field is required.
+          </ng-template>
+        </ng-container>
+        <span *ngIf="surveyForm.get('question-' + i)?.errors?.['minlength']">
+          Minimum length is 5 characters.
+        </span>
+        <span *ngIf="surveyForm.get('question-' + i)?.errors?.['maxlength']">
+          Maximum length is 100 characters.
+        </span>
+        <span *ngIf="surveyForm.get('question-' + i)?.errors?.['email']">
+          Please enter a valid email.
+        </span>
+      </div>
+    </div>
+    <button type="submit" class="submit-button">Submit</button>
+  </form>
   

@@ -2,7 +2,6 @@
 <div class="container-admin-dashboard">
   <h1>Admin Dashboard</h1>
   <div class="card-container-admin-dashboard">
-    <!-- Use *ngFor to dynamically create cards -->
     <div *ngFor="let card of cards" class="card-admin-dashboard" (click)="navigateTo(card.route)">
       <h2>{{ card.title }}</h2>
       <p>{{ card.description }}</p>

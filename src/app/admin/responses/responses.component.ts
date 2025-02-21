@@ -31,9 +31,6 @@ export class ResponsesComponent implements OnInit {
       this.surveyResponseId = params['id'];
       this.surveyId = params['surveyId'];
 
-      console.log('Survey ID:', this.surveyId);
-      console.log('Survey Response ID:', this.surveyResponseId);
-
       if (!this.surveyResponseId || !this.surveyId) {
         this.errorMessage = 'Survey ID or Response ID is missing!';
         this.loading = false;
@@ -44,19 +41,16 @@ export class ResponsesComponent implements OnInit {
   }
 
   fetchSurveyResponse(): void {
-    console.log(`Fetching survey response for ID: ${this.surveyResponseId}`);
 
     this.surveyResponseService
       .getSurveyResponse(this.surveyResponseId)
       .subscribe({
         next: (response) => {
-          console.log('Survey Response Data:', response);
           this.surveyResponse = response;
           this.loading = false;
           this.getSurveyStatus();
         },
         error: (err) => {
-          console.error('Error fetching survey responses:', err);
           this.errorMessage =
             'Failed to fetch survey responses. Try again later.';
           this.loading = false;
@@ -69,11 +63,9 @@ export class ResponsesComponent implements OnInit {
       .getSurveyStatus(this.surveyId, this.surveyResponseId)
       .subscribe({
         next: (status) => {
-          console.log('Survey Status:', status);
           this.statusMessage = `Status: ${status}`;
         },
         error: (err) => {
-          console.error('Error fetching status:', err);
           this.statusMessage = 'Status: Unknown';
         },
       });
@@ -95,7 +87,6 @@ export class ResponsesComponent implements OnInit {
           });
         },
         error: (err) => {
-          console.error('Error accepting response:', err);
           Swal.fire({
             title: 'Error',
             text: 'Failed to accept response.',
@@ -122,7 +113,6 @@ export class ResponsesComponent implements OnInit {
           });
         },
         error: (err) => {
-          console.error('Error rejecting response:', err);
           Swal.fire({
             title: 'Error',
             text: 'Failed to reject response.',

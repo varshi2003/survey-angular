@@ -32,7 +32,6 @@ export class SurveyResponseDashboardComponent implements OnInit {
         this.currentPage = page;
       },
       error: (error) => {
-        console.error('Error fetching surveys:', error);
         alert('Failed to load surveys.');
       }
     });

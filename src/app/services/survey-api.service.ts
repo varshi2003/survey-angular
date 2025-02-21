@@ -14,7 +14,7 @@ export class SurveyApiService {
 
   constructor(private http: HttpClient) {}
 
-  // Fetches the list of surveys
+
   getSurveys(page: number, size: number): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/surveyList?page=${page}&size=${size}`, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

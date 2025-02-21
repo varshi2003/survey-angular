@@ -2,6 +2,7 @@
 
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
@@ -17,7 +18,9 @@ import { SurveyResponseDashboardComponent } from './survey-response-dashboard/su
     AdminDashboardComponent,
     AdminViewSurveysComponent,
     SurveyResponseDashboardComponent,
-    FormsModule
+    FormsModule,
+    AdminCreateFormComponent,
+    ReactiveFormsModule,
   ],
 
 })

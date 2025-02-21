@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NgFor } from '@angular/common';
@@ -7,7 +7,8 @@ import { NgFor } from '@angular/common';
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css'],
-  imports: [CommonModule,NgFor]
+  imports: [CommonModule, NgFor],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AdminDashboardComponent implements OnInit {
   cards = [
@@ -15,30 +16,27 @@ export class AdminDashboardComponent implements OnInit {
       title: 'View Surveys',
       description: 'Check existing surveys and their details.',
       route: 'admin/view-surveys',
-      icon: 'view-icon'
+      icon: 'view-icon',
     },
     {
       title: 'Create Survey',
       description: 'Design and create a new survey.',
       route: 'admin/create-form',
-      icon: 'create-icon'
+      icon: 'create-icon',
     },
     {
       title: 'View Response',
       description: 'Analyze survey responses submitted by users.',
       route: 'admin/survey-response',
-      icon: 'response-icon'
-    }
+      icon: 'response-icon',
+    },
   ];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  // Handle navigation to other components
   navigateTo(route: string): void {
-    // Use Angular Router for navigation instead of window.history.pushState
-    window.location.href = route;  // or use the Angular Router
+    window.location.href = route;
   }
 }

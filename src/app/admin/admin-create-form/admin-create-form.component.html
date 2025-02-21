@@ -1,23 +1,43 @@
-<!-- <p>admin-create-form works!</p>
 
-<div class="survey-form">
+<div class="app">
+  <div class="survey-form" [formGroup]="surveyForm">
     <h1>Let's Create a New Survey!</h1>
-  
-   
-    <input type="text" [(ngModel)]="surveyName" placeholder="Enter Survey Name" maxlength="30">
-    <textarea [(ngModel)]="surveyDescription" placeholder="Enter Survey Description" maxlength="60"></textarea>
-  
- 
-    <label for="surveyImage">Upload Image:</label>
-    <input type="file" [(ngModel)]="surveyImage">
-  
-    <button (click)="addQuestion()">Add Question</button>
-  
-   
-    <div *ngFor="let question of questions; let i = index">
-      <div class="question-container">
+    <div class="form-field">
+      <label for="surveyName">Survey Title:</label>
+      <input
+        id="surveyName"
+        type="text"
+        formControlName="surveyName"
+        placeholder="Enter Survey Name"
+        (keydown)="limitInput($event, 20)"
+        (paste)="limitPaste($event, 20)"
+      />
+    </div>
+
+    <div class="form-field">
+      <label for="surveyDescription">Survey Description:</label>
+      <textarea
+        id="surveyDescription"
+        formControlName="surveyDescription"
+        placeholder="Enter Survey Description"
+        (keydown)="limitInput($event, 60)"
+        (paste)="limitPaste($event, 60)"
+      ></textarea>
+    </div>
+
+    <div class="form-field">
+      <label for="surveyImage">Upload Image :</label>
+      <input id="surveyImage" type="file" (change)="onFileChange($event)" />
+    </div>
+
+    <div formArrayName="questions">
+      <div
+        class="question-container"
+        *ngFor="let questionGroup of questions.controls; let i = index"
+        [formGroupName]="i"
+      >
         <label>Question Type</label>
-        <select [(ngModel)]="question.type" (change)="updateType(i, $event)">
+        <select formControlName="type" (change)="updateType(i)">
           <option value="Paragraph">Paragraph</option>
           <option value="MultipleChoice">Multiple Choice</option>
           <option value="RadioButton">Radio Button</option>
@@ -26,92 +46,69 @@
           <option value="DateAndTime">Date and Time</option>
           <option value="Email">Email</option>
         </select>
-  
-       
-        <label>Required:</label>
-        <input type="radio" [(ngModel)]="question.required" [value]="true"> Yes
-        <input type="radio" [(ngModel)]="question.required" [value]="false"> No
-  
-        
-        <input type="text" [(ngModel)]="question.question" placeholder="Enter the Question">
-  
-        
-        <div *ngIf="['Paragraph', 'Email'].includes(question.type)">
-          <input type="text" [(ngModel)]="question.placeholder" placeholder="Enter placeholder text">
+
+        <label class="required-label">Required:</label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" formControlName="required" [value]="true" />
+            <span>Yes</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" formControlName="required" [value]="false" />
+            <span>No</span>
+          </label>
         </div>
-  
         
-        <div *ngIf="['MultipleChoice', 'RadioButton', 'DropDown'].includes(question.type)">
-          <div *ngFor="let option of question.additionalProperties.options; let j = index">
-            <input type="text" [(ngModel)]="question.additionalProperties.options[j]" placeholder="Option">
-            <button (click)="removeOption(i, j)">Remove Option</button>
+        <label>{{ i + 1 }}. Question:</label>
+        <input
+          type="text"
+          formControlName="question"
+          placeholder="Enter the Question"
+          (keydown)="limitInput($event, 100, 5)"
+          (paste)="limitPaste($event, 100, 5)"
+        />
+
+        <div
+          *ngIf="['Paragraph', 'Email'].includes(questionGroup.get('type')?.value)"
+        >
+          <label>Placeholder:</label>
+          <input
+            type="text"
+            formControlName="placeholder"
+            placeholder="Enter placeholder text"
+          />
+        </div>
+
+        <div
+          formGroupName="additionalProperties"
+          *ngIf="['MultipleChoice', 'RadioButton', 'DropDown'].includes(questionGroup.get('type')?.value)"
+        >
+          <div formArrayName="options">
+            <div
+              class="option-item"
+              *ngFor="let optControl of getOptions(i).controls; let j = index"
+            >
+              <input type="text" [formControlName]="j" placeholder="Option" />
+              <button type="button" class="remove-btn" (click)="confirmRemoveOption(i, j)">
+                Remove Option
+              </button>
+            </div>
           </div>
-          <button (click)="addOption(i)">Add Option</button>
+          <button type="button" class="add-option-btn" (click)="addOption(i)">Add Option</button>
         </div>
-  
-  
-        <button (click)="removeQuestion(i)">Remove Question</button>
+
+        <button type="button" class="edit-btn" (click)="confirmEditQuestion(i)">Edit Question</button>
+        <button type="button" class="remove-btn" (click)="confirmRemoveQuestion(i)">
+          Remove Question
+        </button>
       </div>
     </div>
-  
-  
+
+    <button type="button" id="addQuestionBtn" (click)="addQuestion()">Add Question</button>
+
     <div class="button-container">
-      <button (click)="saveSurvey()">Save Survey</button>
-      <button (click)="cancelSurvey()">Cancel Survey</button>
+      <button type="button" class="save-survey-btn" (click)="saveSurvey()">Save Survey</button>
+      <button type="button" class="cancel-survey-btn" (click)="confirmCancelSurvey()">Cancel Survey</button>
     </div>
-</div> -->
-
-
-<p>admin-create-form works!</p>
-
-<div class="survey-form">
-    <h1>Let's Create a New Survey!</h1>
-  
-    <input type="text" [(ngModel)]="surveyName" placeholder="Enter Survey Name" maxlength="30">
-    <textarea [(ngModel)]="surveyDescription" placeholder="Enter Survey Description" maxlength="60"></textarea>
-  
-    <label for="surveyImage">Upload Image:</label>
-    <input type="file" [(ngModel)]="surveyImage">
-  
-    <button (click)="addQuestion()">Add Question</button>
-  
-    <div *ngFor="let question of questions; let i = index">
-      <div class="question-container">
-        <label>Question Type</label>
-        <select [(ngModel)]="question.type" (change)="updateType(i, $event)">
-          <option value="Paragraph">Paragraph</option>
-          <option value="MultipleChoice">Multiple Choice</option>
-          <option value="RadioButton">Radio Button</option>
-          <option value="DropDown">Dropdown</option>
-          <option value="FileUpload">File Upload</option>
-          <option value="DateAndTime">Date and Time</option>
-          <option value="Email">Email</option>
-        </select>
-  
-        <label>Required:</label>
-        <input type="radio" [(ngModel)]="question.required" [value]="true"> Yes
-        <input type="radio" [(ngModel)]="question.required" [value]="false"> No
-  
-        <input type="text" [(ngModel)]="question.question" placeholder="Enter the Question">
-  
-        <div *ngIf="['Paragraph', 'Email'].includes(question.type)">
-          <input type="text" [(ngModel)]="question.placeholder" placeholder="Enter placeholder text">
-        </div>
-  
-        <div *ngIf="['MultipleChoice', 'RadioButton', 'DropDown'].includes(question.type)">
-          <div *ngFor="let option of question.additionalProperties.options; let j = index">
-            <input type="text" [(ngModel)]="question.additionalProperties.options[j]" placeholder="Option">
-            <button (click)="removeOption(i, j)">Remove Option</button>
-          </div>
-          <button (click)="addOption(i)">Add Option</button>
-        </div>
-  
-        <button (click)="removeQuestion(i)">Remove Question</button>
-      </div>
-    </div>
-  
-    <div class="button-container">
-      <button (click)="saveSurvey()">Save Survey</button>
-      <button (click)="cancelSurvey()">Cancel Survey</button>
-    </div>
+  </div>
 </div>

@@ -1,6 +1,6 @@
 
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { SurveyApiService } from '../../services/survey-api.service';
 import { SurveyDetail } from '../../models/survey-detail.model';
 import { Router } from '@angular/router';
@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
   templateUrl: './admin-view-surveys.component.html',
   styleUrls: ['./admin-view-surveys.component.css'],
   imports : [CommonModule,NgIf,NgFor],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AdminViewSurveysComponent implements OnInit {
   surveys: SurveyDetail[] = [];
